@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 Route::get('/Ssl', [SmsController::class, 'Ssl']);
 Route::get('/Muthofun', [SmsController::class, 'Muthofun']);
+Route::get('/ZamanIT', [SmsController::class, 'ZamanIT']);

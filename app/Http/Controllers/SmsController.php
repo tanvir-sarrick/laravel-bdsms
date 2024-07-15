@@ -7,6 +7,7 @@ use Xenon\LaravelBDSms\Sender;
 use Xenon\LaravelBDSms\Facades\SMS;
 use Xenon\LaravelBDSms\Provider\Ssl;
 use Xenon\LaravelBDSms\Provider\Muthofun;
+use Xenon\LaravelBDSms\Provider\ZamanIT;
 
 class SmsController extends Controller
 {
@@ -81,6 +82,39 @@ class SmsController extends Controller
                 [
                     'sender_id' => 'api token goes here',
                     'api_key' => 'text',
+                ]
+            );
+            $status = $sender->send();
+
+            echo $status;
+        } catch (\Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function ZamanIT()
+    {
+        try {
+            // Initialize the Sender instance
+            $sender = Sender::getInstance();
+
+            // Set the provider
+            $sender->setProvider(ZamanIT::class);
+            // Set the mobile number (can be an array of numbers)
+            $sender->setMobile('017XXYYZZAA');
+            //$sender->setMobile(['017XXYYZZAA','018XXYYZZAA']);
+            // Set the message
+            $sender->setMessage('helloooooooo boss!');
+
+            // Enable queue if desired
+            $sender->setQueue(true); //if you want to sent sms from queue
+
+            // Set the configuration for the provider
+            $sender->setConfig(
+                [
+                    'senderid' => 'api token goes here',
+                    'api_key' => 'text',
+                    'type' => 'iuyiuhkjkhiu',
                 ]
             );
             $status = $sender->send();
